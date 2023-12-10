@@ -60,3 +60,10 @@ def main():
 if __name__ == "__main__":
     main()
 
+# ejercicios Pruebas
+# x**2 - 4*x - 5
+# [-2, 3]
+
+#x**3 - 5*x + 27
+#[-4, 1]
+
