@@ -1,19 +1,5 @@
-#!/usr/bin/env python3
-
 import numpy as np
 import matplotlib.pyplot as plt
-
-def get_user_input():
-    # Solicitar la función al usuario
-    expression = input("Ingrese la función (utilice 'x' como variable): ")
-    # Crear la función a partir de la expresión proporcionada
-    func = lambda x: eval(expression)
-    
-    # Solicitar los extremos del intervalo al usuario
-    a = float(input("Ingrese el extremo izquierdo del intervalo: "))
-    b = float(input("Ingrese el extremo derecho del intervalo: "))
-    
-    return func, a, b
 
 def func(x):
     # Define la función para la cual quieres encontrar la raíz
