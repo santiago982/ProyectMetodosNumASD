@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 expression = input("Ingrese la función (utilice 'x' como variable): ")
 a = float(input("Ingrese el valor de a: "))
 b = float(input("Ingrese el valor de b: "))
-n = int(input("Ingrese el número de intervalos (n): "))
+n = int(input("Ingrese el número de trapecios (n): "))
 
 # Definir la función fx
 fx = lambda x: eval(expression)
