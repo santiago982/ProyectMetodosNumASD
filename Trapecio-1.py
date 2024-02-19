@@ -4,13 +4,16 @@ import matplotlib.pyplot as plt#graficar
 #entradas
 # Solicitar la función al usuario
 expression = input("Ingrese la función (utilice 'x' como variable): ")
+a = int(input("Ingrese el valor de a: "))
+b = int(input("Ingrese el valor de b: "))
+n = int(input("Ingrese el número de intervalos (n): "))
 #Ejemplo
 #2*3*x
 fx= lambda x: eval(expression)
-a=-0;
-b=5;
+#a=0;
+#b=5;
 
-n = 1;
+#n = 1;
 h=(b-a)/n;
 muestras = n+1;
 areaTotal=0;
