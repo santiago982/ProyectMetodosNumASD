@@ -1,34 +1,36 @@
-import numpy as np#matrices,vectores
-import matplotlib.pyplot as plt#graficar
+import numpy as np
+import matplotlib.pyplot as plt
 
-#entradas
 # Solicitar la función al usuario
 expression = input("Ingrese la función (utilice 'x' como variable): ")
-a = int(input("Ingrese el valor de a: "))
-b = int(input("Ingrese el valor de b: "))
+a = float(input("Ingrese el valor de a: "))
+b = float(input("Ingrese el valor de b: "))
 n = int(input("Ingrese el número de intervalos (n): "))
-#Ejemplo
-#2*3*x
-fx= lambda x: eval(expression)
-#a=0;
-#b=5;
 
-#n = 1;
-h=(b-a)/n;
-muestras = n+1;
-areaTotal=0;
+# Definir la función fx
+fx = lambda x: eval(expression)
 
-xi = a;
-for i in range ( 0, n,1):
-    areaTrapecio = h*(fx(xi)+fx(xi+h))/2
-    areaTotal = areaTotal+areaTrapecio
-    xi= xi +h;
-    xi=np.linspace(a,b,muestras);
-    fi= fx(xi)
-    print("CANTIDAD DE TRAPECIOS")
-    print("el resultado de la integral es:",areaTotal)
-    plt.plot(xi,fi,"bo")
-for i in range (0,muestras,1):
-    plt.axvline(xi[i], color ="b")
-plt.fill_between(xi,0,fi,color="green")
+# Calcular el paso h
+h = (b - a) / n
+
+# Inicializar listas para almacenar las coordenadas de los puntos de la función
+xi = np.linspace(a, b, n+1)
+fi = fx(xi)
+
+# Inicializar el área total
+areaTotal = 0
+
+# Calcular la integral utilizando el método del trapecio
+for i in range(n):
+    areaTrapecio = h * (fi[i] + fi[i+1]) / 2
+    areaTotal += areaTrapecio
+
+# Mostrar el resultado de la integral
+print("El resultado de la integral es:", areaTotal)
+
+# Graficar la función y los trapecios
+plt.plot(xi, fi, "bo-", label="Función")
+plt.fill_between(xi, 0, fi, color="green", alpha=0.3, label="Área bajo la curva")
+plt.title("Método del Trapecio")
+plt.legend()
 plt.show()
