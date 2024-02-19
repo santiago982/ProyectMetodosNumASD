@@ -2,7 +2,11 @@ import numpy as np#matrices,vectores
 import matplotlib.pyplot as plt#graficar
 
 #entradas
-fx= lambda x: 2*3*x;
+# Solicitar la función al usuario
+expression = input("Ingrese la función (utilice 'x' como variable): ")
+#Ejemplo
+#2*3*x
+fx= lambda x: eval(expression)
 a=-0;
 b=5;
 
@@ -23,5 +27,5 @@ for i in range ( 0, n,1):
     plt.plot(xi,fi,"bo")
 for i in range (0,muestras,1):
     plt.axvline(xi[i], color ="b")
-plt.fill_between(xi,0,fi,color="red")
+plt.fill_between(xi,0,fi,color="green")
 plt.show()
