@@ -15,6 +15,22 @@ import numpy as np
 
 
 def metodo_jacobi(matriz_ecuaciones, val_indep_ecuaciones, x_inicial, tolerancia, N=100):
+
+    """
+    Implementa el método de Jacobi para resolver un sistema de ecuaciones lineales.
+
+    Parámetros:
+    - matriz_ecuaciones (numpy.ndarray): Matriz de coeficientes del sistema.
+    - val_indep_ecuaciones (numpy.ndarray): Vector de términos independientes.
+    - x_inicial (numpy.ndarray): Vector de valores iniciales para las variables.
+    - tolerancia (float): Criterio de convergencia para la norma de la diferencia entre iteraciones sucesivas.
+    - N (int): Número máximo de iteraciones (por defecto, 100).
+
+    Retorna:
+    - numpy.ndarray: Vector que aproxima la solución del sistema de ecuaciones.
+
+    """
+
     D = np.diag(np.diag(matriz_ecuaciones))
     LU = matriz_ecuaciones - D
     x = x_inicial
@@ -29,12 +45,13 @@ def metodo_jacobi(matriz_ecuaciones, val_indep_ecuaciones, x_inicial, tolerancia
             f"Iteración {i+1}: x = {np.round(x, 5)}")
     return x
 
-
+# Solicitar la entrada del usuario
 n = int(input("Introduce el número de ecuaciones: "))
 matriz_ecuaciones = np.zeros((n, n))
 val_indep_ecuaciones = np.zeros(n)
 x_inicial = np.zeros(n)
 
+# Obtener la matriz de coeficientes, términos independientes y valores iniciales
 for i in range(n):
     ec = list(map(float, input(f"Introduce la ecuación {i+1}: ").split(' ')))
     matriz_ecuaciones[i] = ec[:-1]
@@ -43,6 +60,7 @@ for i in range(n):
 
 tolerancia = float(input("Introduce la tolerancia: "))
 
+# Llamar a la función del método de Jacobi
 x = metodo_jacobi(matriz_ecuaciones, val_indep_ecuaciones,
                   x_inicial, tolerancia)
 print("Solución: ", np.round(x, 5))
