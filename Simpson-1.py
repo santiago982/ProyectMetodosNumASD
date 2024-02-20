@@ -1,5 +1,3 @@
-#METODO SIMPSON CASO 1 
-
 import matplotlib.pyplot as plt
 import numpy as np #importacion de librerias 
 
@@ -12,7 +10,7 @@ def integracion_sim13(x, y): #Definicion de la funcion
 
     if n%2 == 0: #Verificacion del numero de subintervalos par
         a = x[0] #Limite de integracion inferior
-        b = x[n] #Limite de integracion superior
+        b = x[n] #Limite de integracion superior        
         sumy1 = 0 #Sumatoria del valor de la funcion en las posiciones impares
         sumy2 = 0 #Sumatoria del valor de la funcion en las posiciones pares 
 
@@ -48,7 +46,6 @@ print(integracion_sim13(x, y)) #solucion numerica de la integral
 
 #Graficación
 def funcion(x):
- #f= 0.2 + 25*x - 200*x*2 + 675*x3 - 900*x4 + 400*x*5
  f = np.sqrt(5+x**3)
  return f 
 
