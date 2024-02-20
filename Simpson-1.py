@@ -3,6 +3,7 @@
 import matplotlib.pyplot as plt
 import numpy as np #importacion de librerias 
 
+
 def integracion_sim13(x, y): #Definicion de la funcion
  I = [] #Valor acumulado de la integral 
 
@@ -40,23 +41,19 @@ n = 20 #Cantidad de subintervalos
 
 #DATOS DE ENTRADA FUNCION
 x = np.linspace(a, b, n + 1) #Vector de datos en 'x'
-#y = 0.2 + 25*x - 200*x*2 + 675*x3 - 900*x4 + 400*x*5 #Funcion del problema 
 
 y= np.sqrt(5+x**3)
-#DATOS DE ENTRADA NUMERICOS
-#x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-#y = [5, 5.5, 5.7, 5.9, 6.3, 6.5, 6.9, 8, 9, 12, 15] 
 
 print(integracion_sim13(x, y)) #solucion numerica de la integral 
 
-#aqui empieza la graficacion de la funcion
+#Graficación
 def funcion(x):
  #f= 0.2 + 25*x - 200*x*2 + 675*x3 - 900*x4 + 400*x*5
  f = np.sqrt(5+x**3)
  return f 
 
 yn = funcion(x)
-plt.plot(x, yn) # frafica la funcion (establece taaño plano, traza la grafica)
+plt.plot(x, yn) # frafica la funcion (establece el plano, traza la grafica)
 plt.grid(True)
 plt.axhline(0, color="black") # establece las lineas de origen en x y el color
 plt.axvline(0, color="black") # establece las lineas de origen en y y el color
