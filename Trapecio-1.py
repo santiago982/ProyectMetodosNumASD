@@ -25,7 +25,7 @@ for i in range(n):
     areaTrapecio = h * (fi[i] + fi[i+1]) / 2
     areaTotal += areaTrapecio
 
-# Mostrar el resultado de la integral
+# Mostrar el resultado numérico de la integral
 print("El resultado de la integral es:", areaTotal)
 
 # Graficar la función y los trapecios
