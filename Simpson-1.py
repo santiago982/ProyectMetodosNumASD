@@ -33,9 +33,9 @@ def integracion_sim13(x, y): #Definicion de la funcion
  return(I) 
 
 #DATOS DE ENTRADA
-a = -1 #Limite de integracion inferior del problema
-b = 3 #Limite de integracion superior del problema
-n = 20 #Cantidad de subintervalos 
+a = 0 #Limite de integracion inferior del problema
+b = 1 #Limite de integracion superior del problema
+n = 4 #Cantidad de subintervalos 
 
 #DATOS DE ENTRADA FUNCION
 x = np.linspace(a, b, n + 1) #Vector de datos en 'x'
