@@ -1,92 +1,70 @@
-import matplotlib.pyplot as plt #libreria de graficar
-import numpy as np 
-#libreria de uso y aplicacion de funciones y operaciones matematicas
+import matplotlib.pyplot as plt
+import numpy as np
 
- 
-
-
-xi = []   # Lista para almacenar las aproximaciones sucesivas
-
-# gx: La función de punto fijo.
-# x0: El valor inicial.
-# t: La tolerancia para la aproximación de la raíz,
-# (valor por defecto: 0.0001).
-#  itMax: Número máximo de iteraciones (valor por defecto: 100).
-
+xi = []  # Lista para almacenar las aproximaciones sucesivas
 
 def puntofijo(gx, x0, t=0.0001, itMax=100):
-    it = 0       # iteraciones contador
-    x1 = gx(x0)  # Calcular la primera aproximación
-    intervalo = abs(x1-x0)   # Calcular el intervalo entre aproximaciones
-    while (intervalo >= t and it <= itMax): # Iterar mientras se cumplan las condiciones de convergencia y el número máximo de iteraciones no se haya alcanzado
-        x0 = x1              # Iterar mientras se cumplan las condiciones de convergencia y el número máximo de iteraciones no se haya alcanzado
-        x1 = gx(x0)          # Calcular la siguiente aproximación
-        it = it + 1          # Incrementar el contador de iteraciones
-        intervalo = abs(x1-x0)   # Calcular el nuevo intervalo
-        
+    it = 0
+    x1 = gx(x0)
+    intervalo = abs(x1 - x0)
+    
+    while intervalo >= t and it < itMax:
+        x0 = x1
+        x1 = gx(x0)
+        it += 1
+        intervalo = abs(x1 - x0)
         
         print("Iteracion: ", it, " Raiz: ", x1, " Intervalo: ", intervalo)
-        xi.append(x1)    # Agregar la nueva aproximación a la lista
+        xi.append(x1)
 
-    raiz = x1              # Establecer el resultado como la última aproximación
-    if (it >= itMax):      # Verificar si se alcanzó el número máximo de iteraciones
-        raiz = np.nan      # Si sí, establecer el resultado como NaN (no es un número)
-    return raiz            #devuelve resultado
+    raiz = x1
+    if it >= itMax:
+        raiz = np.nan
+        print("El método no converge después de", itMax, "iteraciones.")
+    else:
+        print("Convergencia alcanzada en la iteración", it)
 
-
-# PROGRAMA -----------------
-# INGRESO---------Datos
-fx_input = input("Ingrese la función f(x): ") #funcion inicial 
-gx_input = input("Ingrese la función g(x): ") #su despeje
-x0 = float(input("Ingrese el valor inicial x0: ")) #Punto Inicial
-tolera = float(
-    input("Ingrese la tolerancia para la aproximación de la raíz: "))
-
-# Pruebas
-# 2*x**2 - x - 5
-# (x + 5) / 2
-
-# -x**2+1/3-1/9*x
-#  1/3-2/9*x 
+    return raiz
 
 
-# Definir las funciones f(x) y g(x) a partir de las entradas del usuario
+# Validaciones de error al ingresar datos
+while True:
+    try:
+        fx_input = input("Ingrese la función f(x): ")
+        gx_input = input("Ingrese la función g(x): ")
+        x0 = float(input("Ingrese el valor inicial x0: "))
+        tolera = float(input("Ingrese la tolerancia para la aproximación de la raíz: "))
+        break  # Salir del bucle si la entrada es válida
+    except ValueError:
+        print("Error: Ingrese valores numéricos válidos.")
 
-
+# Definir las funciones f(x) y g(x)
 def fx(x): return eval(fx_input)
-def gx(x): return np.sqrt(eval(gx_input))
-
-
-b = 0      # intervalo
-# tolera = 0.001
-iteramax = 100  # iteraciones máximas
+def gx(x): return np.sqrt(x) if "sqrt" in gx_input else np.exp(x) if "exp" in gx_input else gx_input(x)
 
 # PROCEDIMIENTO para Aplicar el método del punto fijo
 respuesta = puntofijo(gx, x0, tolera)
-print(xi)     # Imprimir la lista de aproximaciones
+print(xi)
 
-
-# SALIDA
-print(respuesta)
+# Imprimir información final
+print("\nResultado final:")
+if np.isnan(respuesta):
+    print("El método no converge.")
+else:
+    print("Raíz encontrada:", respuesta)
 
 # Gráfico
-# Crear un rango de valores x desde -10 hasta 10
 x = np.linspace(-3, 3, 100)
-
-# Evaluar la función para cada valor de x
 y = fx(x)
 raiz = respuesta
 y_punto = fx(raiz)
 
-
-# Crear el gráfico
 plt.title('Gráfico de la función f(x)')
 plt.plot(x, y, label='f(x) = '+fx_input)
 plt.axhline(y=0, color='black', linestyle='--')
 plt.axvline(x=0, color='black', linestyle='--')
 for i in range(len(xi)):
-    plt.scatter(xi[i], 0, color='blue', marker='.',
-                label='Iteracion '+str(i+1))
+    plt.scatter(xi[i], 0, color='blue', marker='.', label='Iteracion '+str(i+1))
 plt.scatter(raiz, y_punto, marker='*', color='red', label='Raíz')
 
 plt.xlabel('x')
