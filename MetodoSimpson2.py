@@ -1,4 +1,4 @@
-import sympy as sp                 #para convertir una expresión simbólica en una función numérica
+import sympy as sp               #para convertir una expresión simbólica en una función numérica
 import matplotlib.pyplot as plt  #libreria para Graficar
 import numpy as np               # para operaciones numericas y manipulacion de arreglos
 
